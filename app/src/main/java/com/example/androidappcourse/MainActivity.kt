@@ -72,6 +72,108 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        println("onResume")
+
+        // Liste immutabili (readonly)
+        val lista1 = listOf("ciao", "a", "tutti")
+        var lista3 = listOf("massimo", "decimo", "meridio")
+        //lista1[0] = "ciao"  // Non ammesso -> è readonly
+
+        // Liste mutabili
+        val listaMutabile = mutableListOf("ciao", "a", "tutti", "modificabile", "b")
+        println("listaMutabile prima: $listaMutabile")
+        listaMutabile[0] = "buongiorno"
+        listaMutabile.add("elemento aggiunto")
+        println("listaMutabile dopo: $listaMutabile")
+
+        //lista1 = lista3   // val impedisce di cambiare il riferimento del puntatore
+        // Attenzione: è un cambio del riferimento del puntatore, non un clonazione della lista
+        lista3 = lista1
+        println("lista1: $lista1")
+        println("lista3: $lista3")
+        var lista2 = lista1
+
+        // Invocazione funzioni
+        println("groupWordsByLength ${groupWordsByLength(lista1)}")
+        println("groupWordsByLength ${groupWordsByLength(listaMutabile)}")
+
+        // Invocazione funzioni con lambda in input
+
+        // Raggruppamento per lunghezza
+        println("groupWordsBy per lunghezza ${lista1.groupWordsBy() { word -> word.length }}")
+
+        // Raggruppamento per numero di vocali, scrittura "estesa"
+        println("groupWordsBy per numero di vocali, estesa ${lista1.groupWordsBy { word ->
+            val vocali = arrayOf('a', 'e', 'i', 'o', 'u')
+            var counter = 0
+            for (c in word) {
+                if (c in vocali) counter++
+            }
+            counter
+        }}")
+
+        // Raggruppamento per numero di vocali, scrittura più concisa
+        println("groupWordsBy per numero di vocali, più concisa ${
+            lista1.groupWordsBy { word ->  word.count { c -> c in arrayOf('a', 'e', 'i', 'o', 'u') }
+        }}")
+
+        // Raggruppamento per numero di vocali, scrittura kotlin-like
+        println("groupWordsBy per numero di vocali, kotlin-like ${
+            lista1.groupWordsBy { it.count { it in arrayOf('a', 'e', 'i', 'o', 'u') } }
+        }")
+
+        // Funzione di trasformazione MAP
+        val listaDiNumberi = listOf(1,2,3,4)
+        println("map: moltiplicazione ${listaDiNumberi.map { n -> n*2 }}")
+        println("map: moltiplicazione con it ${listaDiNumberi.map { it * 2 }}")
+        println("map: pari o dispari ${listaDiNumberi.map { it % 2 == 0 }}")
+
+        // Concatenazione trasformazioni filter e map
+        println(
+            listaDiNumberi
+                .filter { it % 2 == 0 } // Filtro: considero solo i pari
+                .map { "L'elemento $it è pari" }
+        )
+    }
+
+    /*
+        Funzione che raggruppa le parole per lunghezza
+
+        modalità classica
+     */
+    fun groupWordsByLength(words: List<String>): Map<Int, List<String>> {
+        val result = mutableMapOf<Int, MutableList<String>>()
+        for (word in words) {
+            val length = word.length
+            if (length !in result) {
+            //if (result.containsKey(length)) {
+                result[length] = mutableListOf()
+            }
+            result[length]?.add(word)
+        }
+        return result
+    }
+
+    /*
+        Funzione che raggruppa le parole per lunghezza
+
+        modalità extension function
+     */
+    fun List<String>.groupWordsBy(fn: (String) -> Int): Map<Int, List<String>> {
+        val result = mutableMapOf<Int, MutableList<String>>()
+        for (word in this) {
+            val key = fn(word)
+            if (key !in result) {
+                result[key] = mutableListOf()
+            }
+            result[key]?.add(word)
+        }
+        return result
+    }
+
 }
 
 @Composable
