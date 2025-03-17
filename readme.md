@@ -19,3 +19,16 @@
    1. Operazioni (https://kotlinlang.org/docs/collection-operations.html)
    1. Map (https://kotlinlang.org/docs/collection-transformations.html)
    1. Filter (https://kotlinlang.org/docs/collection-filtering.html)
+
+## Lezione 3
+1. Ripasso concetti object oriented
+   1. Classi, interfacce, ereditarietà, polimorfismo
+1. Object oriented in Kotlin
+   1. Classi (https://kotlinlang.org/docs/classes.html)
+   1. Ereditarietà (https://kotlinlang.org/docs/inheritance.html)
+   1. Proprietà (https://kotlinlang.org/docs/properties.html)
+   1. Modificatori visibilità (https://kotlinlang.org/docs/visibility-modifiers.html#class-members)
+   1. Data classes (https://kotlinlang.org/docs/data-classes.html)
+   1. Proprietà lazy (https://kotlinlang.org/docs/delegated-properties.html#lazy-properties)
+1. Scope functions
+   1. With (https://kotlinlang.org/docs/scope-functions.html#with)

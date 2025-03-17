@@ -137,43 +137,132 @@ class MainActivity : ComponentActivity() {
                 .filter { it % 2 == 0 } // Filtro: considero solo i pari
                 .map { "L'elemento $it è pari" }
         )
+
+        // Creazione istanze di una classe
+        val persona1 = Person("Giacomo", "Dradi", 33)
+        val persona2 = Person("Pippo", "Pluto", 30)
+
+        // Invocazione metodi di una classe
+        persona1.sayHello()
+
+        // Data class e clonazione
+        data class User(val name: String, val age: Int)
+        val jack = User(name = "Jack", age = 1)
+        val olderJack = jack.copy(age = 2)
+        println(jack.age)
+
+        // Funzione with
+        with(jack) {
+            println(name)
+            println(age)
+        }
+
+        // Delegato Lazy<T> e keyword by
+        val lazyValue: String by lazy {
+            println("computed!")
+            "Hello"
+        }
+
+        // Esercizio contatore
+        var counter: ICounter = SimpleCounter(0)
+        with(counter) {
+            inc()
+            inc()
+            print()
+            reset()
+            print()
+        }
+        val display: IDisplay = ConsoleDisplay()
+        counter = CounterWithDisplay(display)
+        with(counter) {
+            inc()
+            inc()
+            print()
+            reset()
+            print()
+        }
+    }
+}
+
+// Classe con proprietà definite nel costruttore primario
+class Person1(val name: String, val surname: String)
+
+/*
+    Classe aperta con costruttore primario e proprietà definite
+    - sia nel costruttore primario
+    - sia nel corpo della classe
+ */
+open class Person (name: String, surname: String, val age: Int) {
+    val name = name.uppercase()
+    val surname = surname.uppercase()
+
+    open fun sayHello(): String {
+       return "Ciao $name $surname"
     }
 
-    /*
-        Funzione che raggruppa le parole per lunghezza
+    fun sayHello2() = "Ciao $name $surname (anni $age)"
+}
 
-        modalità classica
-     */
-    fun groupWordsByLength(words: List<String>): Map<Int, List<String>> {
-        val result = mutableMapOf<Int, MutableList<String>>()
-        for (word in words) {
-            val length = word.length
-            if (length !in result) {
+/*
+    Classe figlia che utilizza il costruttore primario della classe genitore
+    e aggiunge una proprietà
+ */
+class Student(name: String, surname: String, age: Int, val matr: String)
+    : Person(name, surname, age) {
+
+    var p1: String = ""
+        get() = name.uppercase()
+        set(value) { field = value }
+
+    override fun sayHello(): String {
+        //return "Ciao $name $surname (matr: $matr)"
+        return "${super.sayHello()} (matr: $matr)"
+        //return super.sayHello() + " (matr: $matr)"
+    }
+}
+
+
+/*
+class Student: Person {
+    constructor(name: String, surname: String, age: Int) : super(name, surname, age)
+}
+*/
+
+
+/*
+    Funzione che raggruppa le parole per lunghezza
+
+    modalità classica
+*/
+fun groupWordsByLength(words: List<String>): Map<Int, List<String>> {
+    val result = mutableMapOf<Int, MutableList<String>>()
+    for (word in words) {
+        val length = word.length
+        if (length !in result) {
             //if (result.containsKey(length)) {
-                result[length] = mutableListOf()
-            }
-            result[length]?.add(word)
+            result[length] = mutableListOf()
         }
-        return result
+        result[length]?.add(word)
     }
+    return result
+}
 
-    /*
-        Funzione che raggruppa le parole per lunghezza
 
-        modalità extension function
-     */
-    fun List<String>.groupWordsBy(fn: (String) -> Int): Map<Int, List<String>> {
-        val result = mutableMapOf<Int, MutableList<String>>()
-        for (word in this) {
-            val key = fn(word)
-            if (key !in result) {
-                result[key] = mutableListOf()
-            }
-            result[key]?.add(word)
+/*
+    Funzione che raggruppa le parole per lunghezza
+
+    modalità extension function
+ */
+fun List<String>.groupWordsBy(fn: (String) -> Int): Map<Int, List<String>> {
+    val result = mutableMapOf<Int, MutableList<String>>()
+    for (word in this) {
+        val key = fn(word)
+        if (key !in result) {
+            result[key] = mutableListOf()
         }
-        return result
+        result[key]?.add(word)
     }
-
+    return result
 }
 
 @Composable
@@ -183,7 +272,6 @@ fun Greeting(text: String, modifier: Modifier = Modifier) {
         modifier = modifier
     )
 }
-
 
 @Composable
 fun TodoList(todos: List<String>) {
