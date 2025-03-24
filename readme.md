@@ -32,3 +32,12 @@
    1. Proprietà lazy (https://kotlinlang.org/docs/delegated-properties.html#lazy-properties)
 1. Scope functions
    1. With (https://kotlinlang.org/docs/scope-functions.html#with)
+
+## Lezione 4
+1. Elementi fondamentali di una app (https://developer.android.com/guide/components/fundamentals)
+1. Activity - ciclo di vita (https://developer.android.com/guide/components/activities/activity-lifecycle)
+1. Layout in compose (https://developer.android.com/develop/ui/compose/layouts/basics)
+   1. Compose playground (https://foso.github.io/Jetpack-Compose-Playground/)
+   1. Screen densities (https://developer.android.com/training/multiscreen/screendensities)
+   1. Material components (https://developer.android.com/develop/ui/compose/components)
+1. Permessi (https://developer.android.com/guide/topics/permissions/overview)

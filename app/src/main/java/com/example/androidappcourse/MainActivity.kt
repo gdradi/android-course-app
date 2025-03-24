@@ -2,6 +2,9 @@
 
 package com.example.androidappcourse
 
+import Counter
+import Display
+import ProfileCard
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -37,11 +40,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.androidappcourse.ui.theme.AndroidAppCourseTheme
 
+data class User(val name: String, val role: String)
+
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("MainActivity", "onCreate")
+
+        /*
+        val user1 = User("Mario Rossi", "Developer")
+        val user2 = User("Mario Rossi", "Developer")
+        val listaUtenti: List<User> = listOf(user1, user2)
+        */
+
+        val listaUtenti: List<User> = listOf(
+            User("Mario Rossi", "Developer"),
+            User("Antonio Neri", "Developer")
+        )
 
         enableEdgeToEdge()
         setContent {
@@ -62,11 +78,11 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        Greeting(
-                            text = "Benvenuti al corso Mobile",
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
-                        )
-                        TodoList(listOf("Sviluppo feature 1", "Testing", "Documentazione"))
+                        Counter()
+                        Counter()
+                        //Display(0)
+                        //ArtistCard()
+                        //listaUtenti.forEach { ProfileCard(it) }
                     }
                 }
             }

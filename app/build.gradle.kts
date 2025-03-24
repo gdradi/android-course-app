@@ -51,4 +51,8 @@ dependencies {
     implementation(libs.androidx.material3)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.ui.text)
+    implementation(libs.androidx.foundation)
+
+    implementation("io.coil-kt:coil-compose:2.4.0") // usa la versione aggiornata
 }
