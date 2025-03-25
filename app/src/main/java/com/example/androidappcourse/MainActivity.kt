@@ -4,6 +4,7 @@ package com.example.androidappcourse
 
 import Counter
 import Display
+import PostListScreen
 import ProfileCard
 import android.os.Bundle
 import android.util.Log
@@ -78,8 +79,9 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        Counter()
-                        Counter()
+                        PostListScreen()
+//                        Counter()
+//                        Counter()
                         //Display(0)
                         //ArtistCard()
                         //listaUtenti.forEach { ProfileCard(it) }
