@@ -41,21 +41,24 @@ fun PostListScreen() {
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {
-        AddPost { newPost ->
-            posts.add(newPost)
-        }
-        posts.forEach {
-            val user = users.find { u -> u.id == it.authorId }
+        AddPost { posts.add(it) }
+        posts.forEach { post ->
+            val user = users.find { u -> u.id == post.authorId }
             if (user == null) {
                 Text(
-                    text = "Impossibile visualizzare il post #${it.id}. Utente ${it.authorId} non trovato}",
+                    text = "Impossibile visualizzare il post #${post.id}. Utente ${post.authorId} non trovato}",
                     modifier = Modifier
                         .background(Color.Red)
                         .padding(15.dp),
                     color = Color.White
                 )
             } else {
-                PostCard(it, user)
+                PostCard(
+                    post = post,
+                    user = user,
+                    onDelete = { postId ->
+                        posts.removeIf { it.id == postId }
+                })
             }
         }
     }

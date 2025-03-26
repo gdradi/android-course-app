@@ -41,3 +41,10 @@
    1. Screen densities (https://developer.android.com/training/multiscreen/screendensities)
    1. Material components (https://developer.android.com/develop/ui/compose/components)
 1. Permessi (https://developer.android.com/guide/topics/permissions/overview)
+
+## Lezione 5
+1. Thinking in compose (https://developer.android.com/develop/ui/compose/mental-model)
+1. Unidirectional data flow (https://developer.android.com/develop/ui/compose/architecture)
+1. Ciclo di vita dei composable (https://developer.android.com/develop/ui/compose/lifecycle)
+1. Stato di un composable (https://developer.android.com/develop/ui/compose/state)
+   1. State hoisting (https://developer.android.com/develop/ui/compose/state-hoisting)
