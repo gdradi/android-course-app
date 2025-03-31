@@ -10,5 +10,7 @@ data class Post(
     val authorId: Int,
     val title: String,
     val description: String,
-    val pictureUrl: String
+    val pictureUrl: String,
+    val latitude: Double? = null,
+    val longitude: Double? = null
 )

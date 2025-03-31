@@ -16,6 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -24,7 +25,11 @@ import okhttp3.OkHttpClient
 
 
 @Composable
-fun PostCard(post: Post, user: User, onDelete: (Int) -> Unit) {
+fun PostCard(
+    post: Post,
+    user: User,
+    viewModel: PostsViewModelWithLocationManager = viewModel(factory = PostsViewModelWithLocationManager.Factory)
+) {
 
     val imageLoader = ImageLoader.Builder(LocalContext.current)
         .okHttpClient { getUnsafeOkHttpClient() }
@@ -51,9 +56,19 @@ fun PostCard(post: Post, user: User, onDelete: (Int) -> Unit) {
                     .height(250.dp),
                 contentScale = ContentScale.Crop
             )
+            Text(
+                text = post.title,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = post.description
+            )
 
             Button(
-                onClick = { onDelete(post.id) },
+                onClick = {
+                    viewModel.deletePost(post.id)
+//                    onDelete(post.id)
+                          },
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(horizontal = 8.dp)

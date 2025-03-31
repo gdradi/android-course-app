@@ -2,10 +2,6 @@
 
 package com.example.androidappcourse
 
-import Counter
-import Display
-import PostListScreen
-import ProfileCard
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -39,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.androidappcourse.posts.PostListScreen
 import com.example.androidappcourse.ui.theme.AndroidAppCourseTheme
 
 data class User(val name: String, val role: String)

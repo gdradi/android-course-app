@@ -48,3 +48,16 @@
 1. Ciclo di vita dei composable (https://developer.android.com/develop/ui/compose/lifecycle)
 1. Stato di un composable (https://developer.android.com/develop/ui/compose/state)
    1. State hoisting (https://developer.android.com/develop/ui/compose/state-hoisting)
+
+## Lezione 6
+1. LanchedEffect (https://developer.android.com/develop/ui/compose/side-effects)
+1. Keep your app responsive (https://developer.android.com/topic/performance/anrs/keep-your-app-responsive)
+1. Kotlin coroutines (https://developer.android.com/kotlin/coroutines)
+1. Viewmodel (https://developer.android.com/topic/libraries/architecture/viewmodel)
+   1. Benefici (https://developer.android.com/topic/libraries/architecture/viewmodel#viewmodel-benefits)
+   1. Lifecycle del viewmodel (https://developer.android.com/topic/libraries/architecture/viewmodel#lifecycle)
+   1. Usare coroutine nel viewmodel (https://developer.android.com/topic/libraries/architecture/coroutines#viewmodelscope)
+   1. Viewmodel come state holder (https://developer.android.com/develop/ui/compose/state-hoisting#viewmodels-as-state-owner)
+   1. Factory (https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-factories)
+1. Service locator (https://en.wikipedia.org/wiki/Service_locator_pattern)
+1. Guide to app architecture (https://developer.android.com/topic/architecture)

@@ -53,6 +53,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.ui.text)
     implementation(libs.androidx.foundation)
+    implementation(libs.lifecycle.viewmodel.compose)
 
     implementation("io.coil-kt:coil-compose:2.4.0") // usa la versione aggiornata
 }
