@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -35,7 +36,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.androidappcourse.exam.ToDoScreen
 import com.example.androidappcourse.posts.PostListScreen
+import com.example.androidappcourse.screens.Screen1
+import com.example.androidappcourse.screens.Screen2
 import com.example.androidappcourse.ui.theme.AndroidAppCourseTheme
 
 data class User(val name: String, val role: String)
@@ -59,6 +67,9 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
+            // Creiamo un controller per la navigazione
+            val navController = rememberNavController()
+
             AndroidAppCourseTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -73,16 +84,46 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) { innerPadding ->
-                    Column(
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        PostListScreen()
-//                        Counter()
-//                        Counter()
-                        //Display(0)
-                        //ArtistCard()
-                        //listaUtenti.forEach { ProfileCard(it) }
+                    Column {
+                        Row(
+                            modifier = Modifier.padding(innerPadding)
+                        ) {
+                            Button(onClick = { navController.navigate("screen1") }) {
+                                Text("Screen 1")
+                            }
+                            Button(onClick = { navController.navigate("screen2") }) {
+                                Text("Screen 2")
+                            }
+                            Button(onClick = { navController.navigate("exam") }) {
+                                Text("Screen 3")
+                            }
+                            Button(onClick = { navController.navigate("posts") }) {
+                                Text("Screen 4")
+                            }
+                        }
+
+                        // Configuriamo il NavHost
+                        NavHost(
+                            navController = navController,
+                            startDestination = "screen1"
+                        ) {
+                            composable("screen1") { Screen1(navController) }
+                            composable("screen2") { Screen2(navController) }
+                            composable("exam") { ToDoScreen() }
+                            composable("posts") { PostListScreen() }
+                        }
                     }
+
+//                    Column(
+//                        modifier = Modifier.padding(innerPadding)
+//                    ) {
+//                        PostListScreen()
+//                        Counter()
+//                        Counter()
+//                        Display(0)
+//                        ArtistCard()
+//                        listaUtenti.forEach { ProfileCard(it) }
+//                    }
                 }
             }
         }

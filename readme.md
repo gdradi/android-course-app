@@ -61,3 +61,10 @@
    1. Factory (https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-factories)
 1. Service locator (https://en.wikipedia.org/wiki/Service_locator_pattern)
 1. Guide to app architecture (https://developer.android.com/topic/architecture)
+
+## Lezione 7
+1. Permessi https://developer.android.com/guide/topics/permissions/overview
+1. Compose navigation (https://developer.android.com/guide/navigation/principles)
+   1. Key concepts (https://developer.android.com/guide/navigation)
+   2. Navigate (https://developer.android.com/guide/navigation/use-graph/navigate)
+1. Ripasso factory viewmodel (https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-factories)

@@ -19,12 +19,22 @@ class PostsViewModelWithLocationManager(
     private val _posts = MutableStateFlow<List<Post>>(emptyList())
     val posts: StateFlow<List<Post>> = _posts
 
-    // Define ViewModel factory in a companion object
+    /*
+    se il viewmodel ha dei parametri in input, occorre istruire compose su come istanziarlo.
+    Lo si fa implementando una factory in cui dovete restituire l'istanza del view model.
+
+    Il nostro viewmodel ha bisogno in input nel costruttore di un LocationManager, che a sua volta
+    ha bisogno del context dell'applicazione. Quindi
+
+    step 1. recuperare il context con il comando fisso
+    step 2. istanziare un LocationManager
+    step 3. istanziare e restituire un nostro view model
+     */
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 println("factory");
-                // Istanziazione dipendenze
+
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]!!
                 val locationManager = LocationManager(application.applicationContext)
                 PostsViewModelWithLocationManager(locationManager)
